@@ -2,7 +2,7 @@
 $host = "localhost";      // your database host
 $user = "root";           // your MySQL username
 $pass = "";               // your MySQL password
-$dbname = "minigram";     // your database name
+$dbname = "project";     // your database name
 
 $conn = new mysqli($host, $user, $pass, $dbname);
 
