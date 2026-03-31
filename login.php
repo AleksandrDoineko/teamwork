@@ -49,6 +49,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   <input type="text" name="username" placeholder="Username" required>
   <input type="password" name="password" placeholder="Password" required>
   <button type="submit">Login</button>
+  <p style="text-align: center; font-size: 0.85rem; color: #666;">
+    Nav konta? <a href="register.php" style="color: #534AB7;">Reģistrēties</a>
+  </p>
 </form>
 
 </body>
