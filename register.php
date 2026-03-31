@@ -40,17 +40,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 <body>
 
-<form action="register.php" method="POST">
+<form action="register.php" method="POST" class="glass-form">
   <h2>Create Account</h2>
+
   <?php if ($error): ?>
-    <p style="color: red; text-align: center;"><?= htmlspecialchars($error) ?></p>
+    <p class="error"><?= htmlspecialchars($error) ?></p>
   <?php endif; ?>
-  <input type="text" name="username" placeholder="Username" required>
-  <input type="email" name="email" placeholder="Email" required>
-  <input type="password" name="password" placeholder="Password" required>
-  <button type="submit">Register</button>
-  <p style="text-align: center; font-size: 0.85rem; color: #666;">
-    Jau ir konts? <a href="login.php" style="color: #534AB7;">Pieteikties</a>
+
+  <input type="text" name="username" placeholder="Username" required class="glass-input">
+  <input type="email" name="email" placeholder="Email" required class="glass-input">
+  <input type="password" name="password" placeholder="Password" required class="glass-input">
+
+  <button type="submit" class="glass-btn">Register</button>
+
+  <p class="login-link">
+    Jau ir konts? <a href="login.php">Pieteikties</a>
   </p>
 </form>
 
