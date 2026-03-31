@@ -1,8 +1,14 @@
 <?php
+session_start();
 require_once "db.php";
 
-// TEMP: hardcoded user until login system exists
-$user_id = 1;
+// ← JAUNS: sesijas pārbaude
+if (!isset($_SESSION['user_id'])) {
+    http_response_code(401);
+    echo "Not logged in";
+    exit;
+}
+$user_id = $_SESSION['user_id'];
 
 if (!isset($_GET['post_id'])) {
     http_response_code(400);
