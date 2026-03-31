@@ -24,9 +24,10 @@ $stmt->fetch();
 if (password_verify($password, $hash)) {
     $_SESSION["user_id"] = $user_id;
     $_SESSION["username"] = $username;
-    echo "LOGGED_IN";
+    header("Location: index.php"); // ← redirect uz galveno lapu
+    exit;
 } else {
-    echo "Invalid username or password";
+    die("Invalid username or password");
 }
 
 $stmt->close();

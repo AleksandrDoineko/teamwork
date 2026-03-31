@@ -2,5 +2,6 @@
 session_start();
 session_unset();
 session_destroy();
-echo "LOGGED_OUT";
+header("Location: login.html"); // ← redirect uz login lapu
+exit;
 ?>
