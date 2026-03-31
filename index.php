@@ -189,7 +189,7 @@ async function loadPosts() {
         <img src="${post.image_path}" alt="post">
         ${post.caption ? `<div class="post-caption">${post.caption}</div>` : ''}
         <div class="post-footer">
-          <button class="like-btn" onclick="likePost(${post.post_id}, this)">❤️ Patīk</button>
+          <button class="like-btn" id="btn-${post.post_id}" onclick="likePost(${post.post_id}, this)">❤️ Patīk</button>
           <span class="like-count" id="likes-${post.post_id}">${post.likes} likes</span>
           <span class="post-time">${new Date(post.created_at).toLocaleDateString('lv-LV')}</span>
         </div>
@@ -201,10 +201,21 @@ async function loadPosts() {
 async function likePost(postId, btn) {
   btn.disabled = true;
   const res = await fetch(`like_post.php?post_id=${postId}`);
-  if (res.ok) {
-    const counter = document.getElementById(`likes-${postId}`);
-    counter.textContent = (parseInt(counter.textContent) + 1) + ' likes';
+  const data = await res.json();
+
+  const counter = document.getElementById(`likes-${postId}`);
+  counter.textContent = data.likes + ' likes';
+
+  if (data.action === 'liked') {
+    btn.textContent = '💔 Noņemt';
+    btn.style.background = '#534AB7';
+    btn.style.color = 'white';
+  } else {
+    btn.textContent = '❤️ Patīk';
+    btn.style.background = 'none';
+    btn.style.color = '#534AB7';
   }
+
   btn.disabled = false;
 }
 
