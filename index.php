@@ -1,6 +1,4 @@
 <?php
-// git commit: "feat: update index.php navbar — add profile link"
-
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
@@ -12,6 +10,10 @@ if (!isset($_SESSION['user_id'])) {
 <html>
 <head>
   <title>Feed</title>
+
+  <!-- Svētku CSS -->
+  <link rel="stylesheet" href="holiday.css">
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: Arial, sans-serif; background: #f5f5f5; min-height: 100vh; }
@@ -30,7 +32,12 @@ if (!isset($_SESSION['user_id'])) {
     }
     .nav-links a:hover { background: rgba(255,255,255,0.3); }
 
-    .container { max-width: 600px; margin: 30px auto; padding: 0 16px; }
+    /* POSTU KONTEINERS — CENTRĀ */
+    .container {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 0 16px;
+    }
 
     .upload-form {
       background: white; border-radius: 16px; padding: 20px;
@@ -96,6 +103,7 @@ if (!isset($_SESSION['user_id'])) {
   </div>
 </nav>
 
+<!-- POSTI — CENTRĀ -->
 <div class="container">
   <div class="upload-form">
     <h3>Pievienot postu</h3>
@@ -106,6 +114,18 @@ if (!isset($_SESSION['user_id'])) {
   </div>
   <div id="feed"></div>
 </div>
+
+<!-- LABĀ KOLONNA — SVĒTKI (NEBĪDA POSTUS) -->
+<aside class="sidebar">
+    <div class="svetki-box">
+        <div class="svetki-header">Nākamie svētki</div>
+        <ul class="svetki-list" id="svetki-list">
+            <li>Notiek ielāde...</li>
+        </ul>
+    </div>
+</aside>
+
+<script src="holiday.js"></script>
 
 <script>
 async function loadPosts() {
@@ -192,5 +212,6 @@ async function uploadPost() {
 
 loadPosts();
 </script>
+
 </body>
 </html>
