@@ -15,7 +15,8 @@ $stmt->execute();
 $stmt->store_result();
 
 if ($stmt->num_rows === 0) {
-    die("Invalid username or password");
+    header("Location: login.html?error=Invalid+username+or+password");
+    exit;
 }
 
 $stmt->bind_result($user_id, $hash);
@@ -24,10 +25,11 @@ $stmt->fetch();
 if (password_verify($password, $hash)) {
     $_SESSION["user_id"] = $user_id;
     $_SESSION["username"] = $username;
-    header("Location: index.php"); // ← redirect uz galveno lapu
+    header("Location: index.php");
     exit;
 } else {
-    die("Invalid username or password");
+    header("Location: login.html?error=Invalid+username+or+password");
+    exit;
 }
 
 $stmt->close();
