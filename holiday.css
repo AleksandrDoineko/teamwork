@@ -1,0 +1,43 @@
+/* Svētku bloks */
+.sidebar {
+    position: fixed;
+    right: 70px;
+    top: 100px;
+    width: 330px;
+    height: fit-content;
+    font-family: Arial, sans-serif;
+}
+
+.svetki-box {
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+    background: #ffffff;
+    overflow: hidden;
+    font-size: 14px;
+}
+
+.svetki-header {
+    background: #763bff;
+    padding: 8px 10px;
+    font-weight: 600;
+    color: white;
+}
+
+.svetki-list {
+    list-style: none;
+    margin: 0;
+    padding: 8px 10px;
+}
+
+.svetki-list li {
+    margin-bottom: 4px;
+}
+
+.svetki-name {
+    font-weight: 500;
+}
+
+.svetki-date {
+    color: #555;
+    margin-left: 4px;
+}
