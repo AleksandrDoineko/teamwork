@@ -41,16 +41,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 <body>
 
-<form action="login.php" method="POST">
+<form action="login.php" method="POST" class="glass-form">
   <h2>Login</h2>
+
   <?php if ($error): ?>
-    <p style="color: red; text-align: center;"><?= htmlspecialchars($error) ?></p>
+    <p class="error"><?= htmlspecialchars($error) ?></p>
   <?php endif; ?>
-  <input type="text" name="username" placeholder="Username" required>
-  <input type="password" name="password" placeholder="Password" required>
-  <button type="submit">Login</button>
-  <p style="text-align: center; font-size: 0.85rem; color: #666;">
-    Nav konta? <a href="register.php" style="color: #534AB7;">Reģistrēties</a>
+
+  <input type="text" name="username" placeholder="Username" required class="glass-input">
+  <input type="password" name="password" placeholder="Password" required class="glass-input">
+
+  <button type="submit" class="glass-btn">Login</button>
+
+  <p class="login-link">
+    Nav konta? <a href="register.php">Reģistrēties</a>
   </p>
 </form>
 
