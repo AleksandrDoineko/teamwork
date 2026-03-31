@@ -2,7 +2,6 @@
 session_start();
 require_once "db.php";
 
-// ← JAUNS: sesijas pārbaude
 if (!isset($_SESSION['user_id'])) {
     http_response_code(401);
     echo "Not logged in";
@@ -29,7 +28,23 @@ if (!is_dir($uploadDir)) {
     mkdir($uploadDir, 0777, true);
 }
 
-$ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+$ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+
+// ← JAUNS: atļautie failu tipi
+$allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+if (!in_array($ext, $allowed)) {
+    http_response_code(400);
+    echo "Invalid file type. Allowed: jpg, jpeg, png, gif, webp";
+    exit;
+}
+
+// ← JAUNS: pārbauda vai tiešām ir attēls
+if (!getimagesize($_FILES['image']['tmp_name'])) {
+    http_response_code(400);
+    echo "File is not a valid image";
+    exit;
+}
+
 $filename = uniqid("img_", true) . "." . $ext;
 $targetPath = $uploadDir . $filename;
 $relativePath = "uploads/" . $filename;
