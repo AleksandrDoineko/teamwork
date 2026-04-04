@@ -248,24 +248,26 @@ $member_since = date("Y. gada F", strtotime($created_at));
     </div>
   </div>
 
-  <div class="posts-section">
-    <h2>Postu galerija</h2>
-    <div class="posts-grid">
-      <?php if (empty($posts)): ?>
-        <div class="no-posts">
-          <span>🖼️</span>
-          <?= $is_own_profile ? 'Tev vēl nav postu. <a href="index.php" style="color:var(--brand)">Publicē pirmo!</a>' : 'Šim lietotājam vēl nav postu.' ?>
-        </div>
-      <?php else: ?>
-        <?php foreach ($posts as $post): ?>
-          <div class="post-thumb" onclick='openLightbox(<?= json_encode($post) ?>)'>
+<?php foreach ($posts as $post): ?>
+    <div class="post-item" style="position:relative;">
+
+        <div class="post-thumb" onclick='openLightbox(<?= json_encode($post) ?>)'>
             <img src="<?= htmlspecialchars($post['image_path']) ?>" alt="">
             <div class="post-thumb-overlay">❤️ <?= (int)$post['likes'] ?></div>
-          </div>
-        <?php endforeach; ?>
-      <?php endif; ?>
+        </div>
+
+        <?php if ($is_own_profile): ?>
+            <form action="delete_post.php" method="POST" style="margin-top:6px; text-align:center;">
+                <input type="hidden" name="post_id" value="<?= $post['post_id'] ?>">
+                <button type="submit" class="btn-outline"
+                    onclick="return confirm('Tiešām dzēst šo postu?');">
+                    🗑️ Dzēst
+                </button>
+            </form>
+        <?php endif; ?>
+
     </div>
-  </div>
+<?php endforeach; ?>
 
 </div>
 
